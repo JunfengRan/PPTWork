@@ -1,0 +1,6 @@
+node_modules/
+*.log
+.DS_Store
+ppt/bun.lock
+ppt/package-lock.json
+ppt/scripts/lib/_tmp/

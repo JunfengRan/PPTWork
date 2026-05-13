@@ -1,0 +1,17 @@
+{
+  "name": "ppt-skill",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "description": "Standalone PPT authoring skill: deck CRUD, headless screenshot, and PPTX export (editable + raster). Portable across OpenCode / Claude Code / Cursor / Codex.",
+  "scripts": {
+    "test": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "dom-to-pptx": "^1.1.8",
+    "html2pptx-pro": "^1.0.0",
+    "playwright-core": "^1.59.1",
+    "pptxgenjs": "^4.0.1"
+  }
+}
