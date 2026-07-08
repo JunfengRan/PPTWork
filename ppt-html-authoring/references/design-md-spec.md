@@ -72,7 +72,7 @@ layout: "two-column"       # 必填，简短英文标识，对应你在 slide.ht
 
 ### 怎么落地到 PPTX
 
-design.md 本身**不会**直接进 PPTX。导出引擎（`browser-extractor`）只读 `slide.html` 里的特定节点：
+design.md 本身**不会**直接进 PPTX。`export.mjs`（editable 模式下的 `html2pptx-pro`）只读 `slide.html` 里的特定节点：
 
 - 优先：`<script type="application/json" id="ppt-speaker-notes-json">{ "text": "..." }</script>`
 - 兜底：`<div id="ppt-speaker-notes" hidden>...</div>` 或 `[data-ppt-speaker-notes]`

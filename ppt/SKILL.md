@@ -38,6 +38,15 @@ Chrome/Edge in this order: `PPT_BROWSER_EXECUTABLE` env var → playwright's
 bundled chromium → system Chrome (channel) → system Edge. If none of those
 work, run `npx playwright install chromium` once.
 
+Export toolchain:
+
+| Library | Role |
+|---|---|
+| **playwright-core** | Headless Chromium/Edge rendering of `slide.html`, screenshots |
+| **html2pptx-pro** | Editable PPTX (HTML structure mapping) — default export engine |
+| **dom-to-pptx** | DOM → slide elements — backup editable engine for diagnostics |
+| **pptxgenjs** | PPTX file writing, raster export |
+
 ## Working directory
 
 All scripts operate against `process.cwd()/.pptwork/`. Run them from the

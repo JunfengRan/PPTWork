@@ -7,7 +7,7 @@ slide.html 同一份文件被两条不同管线吃：
 | 场景 | 加载方式 | base URL | 相对路径能否解到磁盘 |
 |------|----------|----------|----------------------|
 | 前端预览（缩略图、主预览） | `<iframe :srcdoc="slide.html">` | `about:srcdoc` | **不能** |
-| `slide_screenshot` / `export_slides` | Playwright + 本地 static HTTP server | `http://127.0.0.1:xxx/` | 能 |
+| `screenshot.mjs` / `export.mjs` | playwright-core + 本地 static HTTP server | `http://127.0.0.1:xxx/` | 能 |
 
 为了让前端 + 截图 + 导出三处看到的**同一个东西**，必须按 srcdoc 那条更严的来写。
 
@@ -27,7 +27,7 @@ slide.html 同一份文件被两条不同管线吃：
 
 ## 为什么相对路径图片"似乎能用"但还是不要写
 
-`<img src="assets/diagram.png">` 在 `slide_screenshot` 和 `export_slides` 时**真的能渲**（因为走 static HTTP server）。但前端预览（srcdoc）会显示破图。结果就是：
+`<img src="assets/diagram.png">` 在 `screenshot.mjs` 和 `export.mjs` 时**真的能渲**（因为走 static HTTP server）。但前端预览（srcdoc）会显示破图。结果就是：
 
 - 用户在前端缩略图列表 / 主预览里看不到图
 - 用户截图时图突然出现
@@ -120,9 +120,9 @@ slide.html 同一份文件被两条不同管线吃：
 
 ### 版心固定 1280×720（**硬约束**）
 
-整页画布固定为 `1280×720` 像素（16:9），对应 PowerPoint 现代默认 16:9 尺寸 / pptxgenjs `LAYOUT_WIDE`（13.333 × 7.5 in）。前端缩略图、`slide_screenshot`、`export_slides` 的 editable 模式都依赖这个版心。
+整页画布固定为 `1280×720` 像素（16:9），对应 PowerPoint 现代默认 16:9 尺寸 / pptxgenjs `LAYOUT_WIDE`（13.333 × 7.5 in）。前端缩略图、`screenshot.mjs`、`export.mjs` 的 editable 模式都依赖这个版心。
 
-**`<html>` 和 `<body>` 必须显式写出 `width:1280px; height:720px;`**，禁止用 `100vh` / `min-height` / 纯 flex 居中代替显式高度——extractor 是按 body 实际渲染尺寸算版心的，body 撑不住高度会导致所有元素坐标错位甚至超出 layout。
+**`<html>` 和 `<body>` 必须显式写出 `width:1280px; height:720px;`**，禁止用 `100vh` / `min-height` / 纯 flex 居中代替显式高度——`html2pptx-pro` 与 headless 截图都是按 body 实际渲染尺寸算版心的，body 撑不住高度会导致所有元素坐标错位甚至超出 layout。
 
 ```html
 <style>
@@ -137,7 +137,7 @@ slide.html 同一份文件被两条不同管线吃：
 
 ### data-id / data-role 稳定
 
-如果一页里某个元素以后可能要被宿主 `edit` / `patch` 工具局部精修，或者要被 `export_slides` 的 extractor 识别（比如 `[data-role="image-slot"]`、`[data-ppt-chart-canvas]`），加上稳定的 `data-id` / `data-role`。后续改文案时按 `data-id` 定位，不会破外层结构。
+如果一页里某个元素以后可能要被宿主 `edit` / `patch` 工具局部精修，或者要被 `export.mjs` / `html2pptx-pro` 识别（比如 `[data-role="image-slot"]`、`[data-ppt-chart-canvas]`），加上稳定的 `data-id` / `data-role`。后续改文案时按 `data-id` 定位，不会破外层结构。
 
 ### 布局防溢出口诀（高频踩坑）
 

@@ -26,7 +26,16 @@ hosts that don't support custom MCP tooling.
 |---|---|
 | `deck.mjs` | Deck CRUD (`init` / `init-slide` / `move` / `delete` / `path` / `list`) |
 | `screenshot.mjs` | Headless render of `slide.html` → `thumbnail.png` |
-| `export.mjs` | PPTX export — default **raster**, opt-in `--mode editable` |
+| `export.mjs` | PPTX export — default **editable** (`html2pptx-pro`), opt-in `--mode raster` |
+
+### Tech stack
+
+| Library | Role |
+|---|---|
+| **playwright-core** | Headless Chromium/Edge rendering of `slide.html`, screenshots |
+| **html2pptx-pro** | Editable PPTX (HTML structure mapping) — default export engine |
+| **dom-to-pptx** | DOM → slide elements — backup editable engine for diagnostics |
+| **pptxgenjs** | PPTX file writing, raster export |
 
 ### Mental model: HTML is the source, PPTX is a build artifact
 
@@ -40,10 +49,26 @@ edit slide.html  →  screenshot.mjs to verify  →  export.mjs to ship .pptx
 That's it. Don't try to edit the .pptx and round-trip changes back into
 HTML — that path doesn't exist by design.
 
-### Raster export (default)
+### Editable export (default)
 
-`export.mjs <deck>` captures each slide as a single full-page PNG (at
-deviceScaleFactor=2) and places it onto a 13.333×7.5 inch slide via
+`export.mjs <deck>` loads each `slide.html` in headless Chromium, injects
+[`html2pptx-pro`](https://www.npmjs.com/package/html2pptx-pro), and maps the
+live DOM into editable PowerPoint objects (text frames, lists, tables, shapes,
+charts). This is the main path when the recipient needs to revise content
+inside PowerPoint.
+
+It is still an HTML-to-PPTX conversion — always open the result and verify
+fonts, layout, and object ordering. If anything drifts, re-export with
+`--mode raster` (pixel-faithful fallback) or, for one-slide diagnostics only,
+`--editable-engine dom-to-pptx`.
+
+Author editable decks with simple, explicit DOM structure; see
+`ppt/references/editable-html-rules.md`.
+
+### Raster export (high-fidelity fallback)
+
+`export.mjs <deck> --mode raster` captures each slide as a single full-page
+PNG (at deviceScaleFactor=2) and places it onto a 13.333×7.5 inch slide via
 [`pptxgenjs`](https://github.com/gitbrent/PptxGenJS). Pixel-faithful to
 the browser preview, immune to font substitution, robust against any
 HTML / CSS quirks.
@@ -52,30 +77,6 @@ Text inside the .pptx isn't selectable — but that's the point: the
 browser preview is the contract. To revise content, edit the slide.html
 and re-run `export.mjs`.
 
-### Editable export (opt-in)
-
-`export.mjs <deck> --mode editable` walks each slide in headless Chromium,
-extracts a structured **SlideSpec** from the live DOM, and renders into
-editable PowerPoint elements:
-
-- `<h1>` / `<p>` / `<span>` → text frames with bold/italic/underline runs
-- `<ul>` / `<ol>` → bulleted lists
-- `<table>` → tables
-- Chart.js configs → live PowerPoint charts (you can edit data points
-  inside PowerPoint after export)
-- Solid-fill `<div>` cards → shapes
-- `<line>` / `<hr>` → line shapes
-- Anything the extractor can't faithfully render (CSS gradients,
-  transformed SVG, generic `<canvas>` without Chart.js, custom fonts the
-  client doesn't have, or any element flagged `data-raster="true"`) →
-  element-screenshot fallback layered at the same coordinates
-
-Use this **only when the recipient needs to edit text inside PowerPoint**
-(e.g. they don't have the HTML source). Editable export drifts on
-real-world decks with custom fonts, complex CSS, transformed SVG, or
-non-Chart.js canvases. If anything looks wrong, drop the flag and
-re-export with the default raster mode — that's bulletproof.
-
 ## Setup
 
 ```bash
@@ -83,9 +84,10 @@ cd ppt
 npm install                # or `bun install`
 ```
 
-Dependencies: `playwright-core` and `pptxgenjs`. The headless renderer
-detects a local Chrome / Edge automatically; if neither is installed, run
-`npx playwright install chromium` once.
+Dependencies: `playwright-core`, `html2pptx-pro`, `dom-to-pptx`, and
+`pptxgenjs`. The headless renderer detects a local Chrome / Edge
+automatically; if neither is installed, run `npx playwright install chromium`
+once.
 
 ## Quick start
 
@@ -161,7 +163,8 @@ MIT — see [`LICENSE`](LICENSE).
 
 ## Acknowledgements
 
-Filesystem-as-database deck contract, the in-page SlideSpec extractor, and
-the editable-mode pptxgenjs engine are adapted from a closed-source
+Filesystem-as-database deck contract and the export toolchain (headless
+render via playwright-core, editable conversion via html2pptx-pro /
+dom-to-pptx, raster assembly via pptxgenjs) are adapted from a closed-source
 OpenCode plugin. Released here in skill form so the same workflow runs on
 any agent host.

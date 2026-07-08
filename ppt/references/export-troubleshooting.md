@@ -116,35 +116,27 @@ different metric, and the line breaks shift. Two ways out:
 
 ### Editable mode: ghosting — content appears twice on the same slide
 
-Caused by a parent element being rasterized while one of its descendants
-also gets emitted as a live element on top. The extractor now suppresses
-descendants of any element it rasterizes (gradients, transformed SVGs,
-`<canvas>`, anything tagged `data-raster="true"`), so this should no
-longer happen for those cases. If you still see ghosting, it usually
-means an element with a `url(...)` background image is being skipped at
-the parent level (current limitation — emits a warning) but the children
-still render.
+Usually caused by a parent element being rasterized while one of its
+descendants also gets emitted as a live element on top. `html2pptx-pro`
+may rasterize complex backgrounds (gradients, transformed SVGs, generic
+`<canvas>` without Chart.js, anything tagged `data-raster="true"`) while
+still walking child nodes.
 
 Workaround: if you need crisp live text on top of a gradient or image
 background, put the background on its own sibling div (no children) and
 place the foreground content in a separate, non-gradient div above it.
-The extractor will rasterize the background div alone and render the
+The converter will rasterize the background div alone and render the
 foreground text/images live.
 
 ### Editable mode: a shape / SVG / canvas didn't render
 
-Anything the extractor can't faithfully map ends up flagged for the
-`embeddedImage` fallback path: it screenshots that single element, writes
-the PNG to `.pptwork/<deck>/.export-cache/elements/`, and pptxgenjs lays
-the PNG back on top of the slide at the same coordinates. The cache is
-removed after a successful export unless you pass `--keep-cache`.
+Anything `html2pptx-pro` can't faithfully map may fall back to a
+rasterized image layer at the same coordinates. If a specific element
+renders wrong, tag it explicitly with `data-raster="true"` so the
+converter doesn't attempt a live mapping.
 
-If a specific element is rendering wrong even via the fallback, tag it
-explicitly with `data-raster="true"` so the extractor doesn't bother
-trying to walk it.
-
-If multiple elements drift in the same export, that's the signal to drop
-the editable mode entirely and ship raster instead.
+If multiple elements drift in the same export, that's the signal to ship
+`--mode raster` instead.
 
 ### Raster mode: text wraps differently than in the browser preview
 

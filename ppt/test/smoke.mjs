@@ -50,6 +50,17 @@ const HAS_HTML2PPTX_PRO = await (async () => {
   }
 })();
 
+const HAS_DOM_TO_PPTX = await (async () => {
+  try {
+    const { createRequire } = await import("node:module");
+    const req = createRequire(import.meta.url);
+    req.resolve("dom-to-pptx");
+    return true;
+  } catch {
+    return false;
+  }
+})();
+
 let pass = 0;
 let fail = 0;
 const log = (s) => process.stdout.write(s + "\n");
@@ -102,6 +113,7 @@ async function main() {
   log(`  playwright-core:   ${HAS_PLAYWRIGHT ? "installed" : "MISSING"}`);
   log(`  pptxgenjs:         ${HAS_PPTXGEN ? "installed" : "MISSING"}`);
   log(`  html2pptx-pro:     ${HAS_HTML2PPTX_PRO ? "installed" : "MISSING"}`);
+  log(`  dom-to-pptx:       ${HAS_DOM_TO_PPTX ? "installed" : "MISSING"}`);
 
   const tmp = await fs.mkdtemp(path.join(tmpdir(), "ppt-smoke-"));
   log(`  tmp project root:  ${tmp}`);
