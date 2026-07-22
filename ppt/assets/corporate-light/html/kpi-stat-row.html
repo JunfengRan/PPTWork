@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" />
+  <style>
+    :root {
+      --bg: #ffffff; --bg-2: #f8f9fc; --text: #1a2035; --muted: #6b7280; --accent: #1d4ed8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body {
+      font-family: "Source Sans 3", "PingFang SC", sans-serif;
+      background: radial-gradient(125% 125% at 100% 0%, var(--bg-2), var(--bg));
+      color: var(--text);
+    }
+    .slide {
+      width: 1280px; height: 720px; padding: 56px 80px 48px;
+      display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+    }
+    [data-role="page-title"] {
+      font-family: Inter, sans-serif; font-size: 24pt; font-weight: 700; margin-bottom: 40px;
+    }
+    .stats {
+      display: flex; gap: 48px; flex-wrap: wrap;
+    }
+    .stat { flex: 1 1 0; min-width: 200px; }
+    [data-role="stat-value"] {
+      font-family: Inter, sans-serif; font-size: 56pt; font-weight: 700;
+      color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums;
+    }
+    [data-role="stat-label"] {
+      font-size: 16pt; color: var(--muted); margin-top: 12px; line-height: 1.4;
+    }
+    .source { margin-top: 48px; font-size: 10pt; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h2 data-role="page-title">Pilot regions hit three measurable targets</h2>
+    <div class="stats">
+      <div class="stat">
+        <div data-role="stat-value">40%</div>
+        <div data-role="stat-label">Ops efficiency lift vs baseline</div>
+      </div>
+      <div class="stat">
+        <div data-role="stat-value">−52%</div>
+        <div data-role="stat-label">Manual handoff hours per 100 tickets</div>
+      </div>
+      <div class="stat">
+        <div data-role="stat-value">98.2%</div>
+        <div data-role="stat-label">SLA adherence after automation</div>
+      </div>
+    </div>
+    <div class="source">Source: internal ops dashboard · Q2 2026 pilot cohort</div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Three numbers, three beats. Efficiency first, then labor savings, then quality guardrail." }
+  </script>
+</body>
+</html>

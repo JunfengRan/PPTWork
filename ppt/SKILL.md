@@ -20,11 +20,16 @@ This skill ships:
 - The companion **ppt-html-authoring** skill handles single-page authoring
   (read its SKILL.md when you actually write a slide.html).
 
-This skill ships **no built-in template assets** — you bring your own. Drop a
-template bucket under `assets/<your-bucket>/` with an `index.json` that lists
-every layout's `id`, `pageType`, `description`, `authoringHints`, and
-`htmlPath`. The story-planning phase reads `index.json` to pick layouts; the
-authoring phase reads the matching HTML to borrow composition.
+This skill ships **two built-in starter buckets** under `assets/`:
+
+- `assets/corporate-light/` — 5 layouts (cover, agenda, two-column + chart, KPI row, closing)
+- `assets/claude-warm/` — 5 layouts (cover, section, timeline, quote, bento grid)
+
+Each bucket has an `index.json` listing every layout's `id`, `pageType`,
+`description`, `authoringHints`, and `htmlPath`. Story planning reads
+`index.json` to pick layouts; authoring reads the matching HTML to borrow
+composition. Add your own buckets alongside the starters, or skip buckets
+entirely and compose from scratch.
 
 ## Setup (first time)
 
@@ -218,10 +223,11 @@ an editable PPTX, do **not** just re-run `--mode editable`. First rewrite
 each `slide.html` with a language model according to
 `references/editable-html-rules.md`, then screenshot-QC and export editable.
 
-## Template buckets (bring your own)
+## Template buckets
 
-This skill ships no template assets. Drop one or more buckets under
-`assets/<bucket-name>/` so story planning has layouts to choose from.
+Built-in starters: `assets/corporate-light/` and `assets/claude-warm/`
+(see repo `examples/` for decks that exercise both). Drop additional
+buckets under `assets/<bucket-name>/` to extend the library.
 
 A bucket is a directory with this shape:
 

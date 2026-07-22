@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Lora:wght@400;500&display=swap" />
+  <style>
+    :root { --bg: #faf9f5; --text: #141413; --muted: #73706a; --accent: #d97757; --card-bg: #fff; --border: #e8e6dc; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body { font-family: Lora, Georgia, serif; background: var(--bg); color: var(--text); }
+    .slide { width: 1280px; height: 720px; padding: 40px; display: flex; flex-direction: column; overflow: hidden; }
+    [data-role="page-title"] { font-family: "Space Grotesk", sans-serif; font-size: 24pt; font-weight: 600; margin-bottom: 20px; flex-shrink: 0; }
+    .content-area { flex: 1 1 0; min-height: 0; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+    [data-role="bento-main"], [data-role="bento-side"] { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; overflow: hidden; }
+    .side-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
+    .tag { font-family: "Space Grotesk", sans-serif; font-size: 10pt; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+    .card-title { font-family: "Space Grotesk", sans-serif; font-size: 16pt; font-weight: 600; margin-top: 8px; }
+    .card-body { font-size: 13pt; color: var(--muted); line-height: 1.6; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h2 data-role="page-title">Three forces reshape agent architecture in 2026</h2>
+    <div class="content-area">
+      <div data-role="bento-main">
+        <span class="tag">Trend 01</span>
+        <div class="card-title">Multi-agent orchestration</div>
+        <div class="card-body">Specialist agents coordinate via shared memory and handoff protocols. Single monolithic copilots lose to composable swarms in complex workflows — especially in ops, support, and research pipelines.</div>
+      </div>
+      <div class="side-stack">
+        <div data-role="bento-side">
+          <span class="tag">Trend 02</span>
+          <div class="card-title">Tool-use standards</div>
+          <div class="card-body">MCP and OpenAPI bridges normalize how agents call enterprise systems.</div>
+        </div>
+        <div data-role="bento-side">
+          <span class="tag">Trend 03</span>
+          <div class="card-title">Eval &amp; guardrails</div>
+          <div class="card-body">Offline eval suites and runtime policy engines become purchase criteria.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Three tech trends in bento layout. Main card is orchestration — the thesis of the deck." }
+  </script>
+</body>
+</html>

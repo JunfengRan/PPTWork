@@ -79,10 +79,12 @@ descriptor:
 | Resolved `html/<id>.html` | Borrow composition (version safe area, columns, hierarchy) |
 | `specs/<id>.json` `zones` | Get structured per-slot descriptions (optional) |
 
-This skill ships **no built-in template buckets** — you (or the
-project) provide them. If no bucket is configured, skip this step and
-write `slide.html` from scratch using `references/slide-html-rules.md`
-and `references/ppt-best-practices.md` as your composition guide.
+Default buckets live in the sister `ppt` skill at
+`../ppt/assets/corporate-light/` and `../ppt/assets/claude-warm/` (5 layouts
+each). Read `index.json` + the matching `html/<id>.html` when the outline
+names an `assetId`. If no bucket is configured, skip this step and write
+`slide.html` from scratch using `references/slide-html-rules.md` and
+`references/ppt-best-practices.md` as your composition guide.
 
 **Do not** pick the `assetId` yourself — that's a story-planning decision,
 the outline already names it (or explicitly says "no preset, design from

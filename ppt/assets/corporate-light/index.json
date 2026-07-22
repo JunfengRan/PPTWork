@@ -1,0 +1,37 @@
+[
+  {
+    "id": "cover-hero",
+    "pageType": "cover",
+    "description": "Hero opener with eyebrow label, large conclusion title, and supporting lead line on a crisp white corporate canvas.",
+    "authoringHints": "Put the conclusion title in [data-role=hero-title]. Eyebrow context in [data-role=hero-eyebrow]. Subtitle or date in [data-role=hero-subtitle]. Optional accent blob is decorative only.",
+    "htmlPath": "html/cover-hero.html"
+  },
+  {
+    "id": "agenda-grid",
+    "pageType": "agenda",
+    "description": "Four-card agenda grid with numbered sections and short descriptions.",
+    "authoringHints": "Page title in [data-role=page-title]. Each card uses [data-role=agenda-item] with inner [data-role=agenda-number], [data-role=agenda-title], [data-role=agenda-desc]. Keep 4 items for best balance.",
+    "htmlPath": "html/agenda-grid.html"
+  },
+  {
+    "id": "two-column-insight",
+    "pageType": "two-column-insight",
+    "description": "Left narrative column with eyebrow + bullets; right column Chart.js bar chart.",
+    "authoringHints": "Title in [data-role=page-title]. Bullets in [data-role=body] as li elements. Chart renders in canvas[data-ppt-chart-canvas]. Update chart data in inline script.",
+    "htmlPath": "html/two-column-insight.html"
+  },
+  {
+    "id": "kpi-stat-row",
+    "pageType": "chart-demo",
+    "description": "Three large KPI stats in a horizontal row with labels and optional page heading.",
+    "authoringHints": "Optional heading in [data-role=page-title]. Each stat block has [data-role=stat-value] and [data-role=stat-label]. Use tabular-nums for numbers.",
+    "htmlPath": "html/kpi-stat-row.html"
+  },
+  {
+    "id": "closing-cta",
+    "pageType": "closing",
+    "description": "Closing slide with headline, supporting bullets, and a pill-shaped CTA button.",
+    "authoringHints": "Main message in [data-role=cta-title]. Bullet list in [data-role=cta-body]. Action label in [data-role=cta-action] (text only, styled as button).",
+    "htmlPath": "html/closing-cta.html"
+  }
+]

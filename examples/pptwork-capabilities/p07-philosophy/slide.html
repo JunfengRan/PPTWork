@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" />
+  <style>
+    :root { --bg: #faf9f5; --text: #141413; --muted: #73706a; --accent: #d97757; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body { font-family: Lora, Georgia, serif; background: var(--bg); color: var(--text); }
+    .slide { width: 1280px; height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 64px 120px; }
+    [data-role="quote-text"] { font-size: 36pt; font-weight: 500; line-height: 1.25; max-width: 22ch; font-style: italic; }
+    [data-role="quote-text"]::before, [data-role="quote-text"]::after { color: var(--accent); }
+    [data-role="quote-by"] { font-family: "Space Grotesk", sans-serif; font-size: 14pt; color: var(--muted); margin-top: 32px; }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <blockquote data-role="quote-text">Edit the HTML, verify the pixels, then ship the deck</blockquote>
+    <div data-role="quote-by">— PPTWork design philosophy</div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "One quote slide. Let it land, then move to the closing ask." }
+  </script>
+</body>
+</html>

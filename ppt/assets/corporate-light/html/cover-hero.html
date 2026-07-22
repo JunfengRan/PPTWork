@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f8f9fc;
+      --text: #1a2035;
+      --muted: #6b7280;
+      --accent: #1d4ed8;
+      --accent-2: #0369a1;
+      --border: rgba(0,0,0,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body {
+      font-family: "Source Sans 3", "PingFang SC", sans-serif;
+      background: radial-gradient(125% 125% at 0% 0%, var(--bg-2), var(--bg));
+      color: var(--text);
+    }
+    .slide {
+      width: 1280px; height: 720px;
+      padding: 64px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .slide::after {
+      content: "";
+      position: absolute; width: 520px; height: 520px;
+      right: -160px; top: -160px;
+      background: radial-gradient(closest-side, rgba(29,78,216,0.18), transparent);
+      pointer-events: none;
+    }
+    .slide > * { position: relative; z-index: 1; }
+    [data-role="hero-eyebrow"] {
+      color: var(--accent-2);
+      font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; font-size: 14pt; margin-bottom: 16px;
+    }
+    [data-role="hero-title"] {
+      font-family: Inter, "PingFang SC", sans-serif;
+      font-size: 44pt; font-weight: 700; line-height: 1.1;
+      max-width: 18ch;
+    }
+    [data-role="hero-subtitle"] {
+      color: var(--muted); font-size: 20pt; margin-top: 24px; max-width: 42ch;
+    }
+    .footer {
+      position: absolute; bottom: 48px; left: 80px;
+      font-size: 11pt; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div data-role="hero-eyebrow">Quarterly Briefing</div>
+    <h1 data-role="hero-title">Digital ops efficiency rises 40% after platform rollout</h1>
+    <p data-role="hero-subtitle">Evidence from three pilot regions · July 2026</p>
+    <div class="footer">Template: cover-hero · corporate-light</div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Open with the headline conclusion. Pause on the 40% figure, then preview the three supporting sections." }
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "pptwork-capabilities",
+  "slides": [
+    "p01-cover",
+    "p02-architecture",
+    "p03-bento",
+    "p04-metrics",
+    "p05-pipeline",
+    "p06-workflow",
+    "p07-philosophy",
+    "p08-closing"
+  ],
+  "exportMode": "raster",
+  "createdAt": "2026-07-22T09:32:48.011Z",
+  "updatedAt": "2026-07-22T09:32:48.335Z"
+}

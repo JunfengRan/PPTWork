@@ -1,0 +1,37 @@
+[
+  {
+    "id": "cover-editorial",
+    "pageType": "cover",
+    "description": "Editorial cover with warm cream canvas, serif body pairing, and a single bold conclusion headline.",
+    "authoringHints": "Eyebrow in [data-role=hero-eyebrow]. Conclusion title in [data-role=hero-title]. Subtitle or meta in [data-role=hero-subtitle].",
+    "htmlPath": "html/cover-editorial.html"
+  },
+  {
+    "id": "section-divider",
+    "pageType": "section",
+    "description": "Chapter break with oversized section number and part title on warm paper.",
+    "authoringHints": "Part label in [data-role=section-number] (e.g. PART 02). Chapter title in [data-role=section-title]. Optional lead in [data-role=section-lead].",
+    "htmlPath": "html/section-divider.html"
+  },
+  {
+    "id": "flow-timeline",
+    "pageType": "flow-timeline",
+    "description": "Horizontal four-node timeline with dots, titles, and short descriptions.",
+    "authoringHints": "Page title in [data-role=page-title]. Each phase is [data-role=timeline-node] containing [data-role=timeline-title] and [data-role=timeline-desc].",
+    "htmlPath": "html/flow-timeline.html"
+  },
+  {
+    "id": "quote-highlight",
+    "pageType": "insight",
+    "description": "Centered pull quote with attribution — ideal for design philosophy or key insight.",
+    "authoringHints": "Quote text in [data-role=quote-text]. Attribution in [data-role=quote-by]. Keep quote under 120 chars.",
+    "htmlPath": "html/quote-highlight.html"
+  },
+  {
+    "id": "bento-asymmetric",
+    "pageType": "two-column-insight",
+    "description": "2fr + 1fr Bento grid: one large primary card and two stacked secondary cards.",
+    "authoringHints": "Page title in [data-role=page-title]. Main card [data-role=bento-main]. Side cards [data-role=bento-side] (two items). Each card has title + body slots.",
+    "htmlPath": "html/bento-asymmetric.html"
+  }
+]

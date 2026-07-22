@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Lora:wght@400;500&display=swap" />
+  <style>
+    :root {
+      --bg: #faf9f5; --text: #141413; --muted: #73706a;
+      --accent: #d97757; --border: #e8e6dc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body { font-family: Lora, Georgia, serif; background: var(--bg); color: var(--text); }
+    .slide {
+      width: 1280px; height: 720px; padding: 48px 64px 56px;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    [data-role="page-title"] {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 26pt; font-weight: 600; margin-bottom: 36px; flex-shrink: 0;
+    }
+    .timeline {
+      flex: 1 1 0; min-height: 0;
+      display: flex; gap: 0; align-items: flex-start;
+    }
+    [data-role="timeline-node"] {
+      flex: 1; position: relative; padding-right: 16px;
+    }
+    [data-role="timeline-node"]::before {
+      content: ""; position: absolute; top: 9px; left: 0; right: 0;
+      height: 2px; background: var(--border);
+    }
+    [data-role="timeline-node"]:last-child::before { right: 50%; }
+    [data-role="timeline-node"]:first-child::before { left: 50%; }
+    .dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent); position: relative; z-index: 1; margin: 0 auto;
+    }
+    [data-role="timeline-title"] {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 16pt; font-weight: 600; margin-top: 20px; text-align: center;
+    }
+    [data-role="timeline-desc"] {
+      font-size: 12pt; color: var(--muted); margin-top: 8px; text-align: center;
+      line-height: 1.45; padding: 0 8px;
+      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h2 data-role="page-title">End-to-end deck pipeline in four phases</h2>
+    <div class="timeline">
+      <div data-role="timeline-node">
+        <div class="dot"></div>
+        <div data-role="timeline-title">Clarify</div>
+        <div data-role="timeline-desc">Audience, length, style, export mode</div>
+      </div>
+      <div data-role="timeline-node">
+        <div class="dot"></div>
+        <div data-role="timeline-title">Plan</div>
+        <div data-role="timeline-desc">Outline with layout diversity rules</div>
+      </div>
+      <div data-role="timeline-node">
+        <div class="dot"></div>
+        <div data-role="timeline-title">Author</div>
+        <div data-role="timeline-desc">design.md + slide.html per page</div>
+      </div>
+      <div data-role="timeline-node">
+        <div class="dot"></div>
+        <div data-role="timeline-title">Ship</div>
+        <div data-role="timeline-desc">Screenshot QC → export .pptx</div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Walk left to right. Emphasize that QC happens before export — screenshots are the contract." }
+  </script>
+</body>
+</html>

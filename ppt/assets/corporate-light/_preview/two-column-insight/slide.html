@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a2035; --muted: #6b7280;
+      --accent: #1d4ed8; --card-bg: #f1f5f9; --border: rgba(0,0,0,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body { font-family: "Source Sans 3", "PingFang SC", sans-serif; background: var(--bg); color: var(--text); }
+    .slide {
+      width: 1280px; height: 720px; padding: 48px 64px;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    [data-role="page-title"] {
+      font-family: Inter, sans-serif; font-size: 24pt; font-weight: 700;
+      margin-bottom: 24px; flex-shrink: 0;
+    }
+    .cols {
+      flex: 1 1 0; min-height: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    }
+    .left { display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+    .eyebrow { color: var(--accent); font-size: 11pt; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    [data-role="body"] {
+      list-style: none; display: flex; flex-direction: column; gap: 14px;
+    }
+    [data-role="body"] li {
+      font-size: 14pt; line-height: 1.5; padding-left: 20px; position: relative;
+    }
+    [data-role="body"] li::before {
+      content: ""; position: absolute; left: 0; top: 10px;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    }
+    .chart-panel {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 20px; height: 100%; min-height: 0;
+      display: flex; flex-direction: column;
+    }
+    .chart-panel h3 { font-family: Inter, sans-serif; font-size: 14pt; margin-bottom: 12px; }
+    .chart-wrap { flex: 1 1 0; min-height: 0; position: relative; }
+    canvas[data-ppt-chart-canvas] { width: 100% !important; height: 100% !important; }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h2 data-role="page-title">Automation cut manual handoffs by half in pilot sites</h2>
+    <div class="cols">
+      <div class="left">
+        <div class="eyebrow">Key findings</div>
+        <ul data-role="body">
+          <li>Ticket routing time dropped from 4.2h to 1.9h average</li>
+          <li>Exception rate fell 23% with standardized playbooks</li>
+          <li>Ops headcount redeployed to tier-2 escalations</li>
+        </ul>
+      </div>
+      <div class="chart-panel">
+        <h3>Hours per 100 tickets</h3>
+        <div class="chart-wrap"><canvas data-ppt-chart-canvas id="chart"></canvas></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    new Chart(document.getElementById("chart"), {
+      type: "bar",
+      data: {
+        labels: ["Before", "Pilot A", "Pilot B", "Pilot C"],
+        datasets: [{ label: "Hours", data: [420, 210, 198, 205], backgroundColor: ["#94a3b8", "#1d4ed8", "#2563eb", "#3b82f6"] }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.06)" } }, x: { grid: { display: false } } }
+      }
+    });
+  </script>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Left column is narrative; right chart is the proof point. Call out the before vs pilot delta." }
+  </script>
+</body>
+</html>

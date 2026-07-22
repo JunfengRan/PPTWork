@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Lora:wght@400;500&display=swap" />
+  <style>
+    :root { --bg: #faf9f5; --text: #141413; --muted: #73706a; --accent: #d97757; --card-bg: #ffffff; --border: #e8e6dc; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body { font-family: Lora, Georgia, serif; background: var(--bg); color: var(--text); }
+    .slide { width: 1280px; height: 720px; padding: 40px; display: flex; flex-direction: column; overflow: hidden; }
+    [data-role="page-title"] { font-family: "Space Grotesk", sans-serif; font-size: 24pt; font-weight: 600; margin-bottom: 20px; flex-shrink: 0; }
+    .content-area { flex: 1 1 0; min-height: 0; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+    [data-role="bento-main"], [data-role="bento-side"] {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px;
+      display: flex; flex-direction: column; gap: 12px; overflow: hidden;
+    }
+    .side-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
+    .tag { font-family: "Space Grotesk", sans-serif; font-size: 10pt; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+    .card-title { font-family: "Space Grotesk", sans-serif; font-size: 16pt; font-weight: 600; }
+    .card-body { font-size: 13pt; color: var(--muted); line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h2 data-role="page-title">Two skills and template buckets form one pipeline</h2>
+    <div class="content-area">
+      <div data-role="bento-main">
+        <span class="tag">Orchestration</span>
+        <div class="card-title">ppt skill</div>
+        <div class="card-body">Clarifies intent, reads template index.json for story planning, initializes deck.json, delegates each page to authoring, runs screenshot visual QC, exports raster or editable PPTX via html2pptx-pro or pptxgenjs.</div>
+      </div>
+      <div class="side-stack">
+        <div data-role="bento-side">
+          <span class="tag">Authoring</span>
+          <div class="card-title">ppt-html-authoring</div>
+          <div class="card-body">Produces design.md + 1280×720 slide.html per outline entry.</div>
+        </div>
+        <div data-role="bento-side">
+          <span class="tag">Templates</span>
+          <div class="card-title">ppt/assets/ buckets</div>
+          <div class="card-body">corporate-light + claude-warm: 10 layouts with data-role slots.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Bento layout shows three modules. Main card is orchestrator; side cards are per-page author and layout library." }
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" />
+  <style>
+    :root {
+      --bg: #ffffff; --bg-2: #f8f9fc; --text: #1a2035; --muted: #6b7280;
+      --accent: #1d4ed8; --card-bg: #f1f5f9; --border: rgba(0,0,0,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body {
+      font-family: "Source Sans 3", "PingFang SC", sans-serif;
+      background: var(--bg); color: var(--text);
+    }
+    .slide {
+      width: 1280px; height: 720px;
+      padding: 56px 64px 48px;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    [data-role="page-title"] {
+      font-family: Inter, sans-serif; font-size: 28pt; font-weight: 700;
+      margin-bottom: 32px; flex-shrink: 0;
+    }
+    .grid {
+      flex: 1 1 0; min-height: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    [data-role="agenda-item"] {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 28px;
+      display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+    }
+    [data-role="agenda-number"] {
+      font-family: Inter, sans-serif; font-size: 32pt; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    [data-role="agenda-title"] {
+      font-family: Inter, sans-serif; font-size: 18pt; font-weight: 600;
+    }
+    [data-role="agenda-desc"] {
+      font-size: 13pt; color: var(--muted); line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h2 data-role="page-title">Today's agenda covers four decision points</h2>
+    <div class="grid">
+      <div data-role="agenda-item">
+        <div data-role="agenda-number">01</div>
+        <div data-role="agenda-title">Current baseline</div>
+        <div data-role="agenda-desc">Where we stand on cost, quality, and cycle time before the rollout.</div>
+      </div>
+      <div data-role="agenda-item">
+        <div data-role="agenda-number">02</div>
+        <div data-role="agenda-title">Pilot outcomes</div>
+        <div data-role="agenda-desc">Measured lift from three regions and the leading indicators we tracked.</div>
+      </div>
+      <div data-role="agenda-item">
+        <div data-role="agenda-number">03</div>
+        <div data-role="agenda-title">Scale plan</div>
+        <div data-role="agenda-desc">Phased expansion, staffing model, and dependency map for Q3–Q4.</div>
+      </div>
+      <div data-role="agenda-item">
+        <div data-role="agenda-number">04</div>
+        <div data-role="agenda-title">Ask &amp; next steps</div>
+        <div data-role="agenda-desc">Budget, executive sponsor alignment, and the 30-day checkpoint.</div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Walk the four blocks left-to-right, top-to-bottom. Each card is a chapter — don't read the descriptions verbatim." }
+  </script>
+</body>
+</html>

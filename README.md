@@ -115,6 +115,43 @@ node ppt/test/smoke.mjs
 It spins up a temporary project, walks the full pipeline, and reports
 pass/fail per step.
 
+### Try the sample decks
+
+Two complete example decks ship in [`examples/`](examples/) with
+`design.md`, `slide.html`, and pre-rendered `thumbnail.png` per slide.
+Pre-built PPTX files are in [`examples/exports/`](examples/exports/).
+
+**Why the shipped examples use raster export:** README preview images and
+the committed `.pptx` files under `examples/exports/` were built with
+`--mode raster` so GitHub / doc viewers show **pixel-identical** output to
+the browser screenshots — useful for visual QA and README fidelity. This is
+a packaging choice, not a platform limit: the **default export path is
+editable** (`html2pptx-pro`), and the same example decks export to fully
+editable PowerPoint when you omit `--mode raster` (editable copies are also
+committed as `*-editable.pptx`).
+
+| File | Mode | Text in PowerPoint |
+|---|---|---|
+| `examples/exports/pptwork-capabilities.pptx` | raster | not selectable (PNG slide) |
+| `examples/exports/pptwork-capabilities-editable.pptx` | editable | selectable text frames |
+| `examples/exports/ai-agent-landscape-2026.pptx` | raster | not selectable |
+| `examples/exports/ai-agent-landscape-2026-editable.pptx` | editable | selectable text frames |
+
+```bash
+# Re-screenshot a sample slide (from repo root)
+node ppt/scripts/screenshot.mjs examples/pptwork-capabilities/p01-cover
+
+# Raster export — pixel-faithful (what README previews match)
+node ppt/scripts/export.mjs pptwork-capabilities --mode raster \
+  --output examples/exports/pptwork-capabilities.pptx
+
+# Editable export — default engine; revise text/shapes inside PowerPoint
+node ppt/scripts/export.mjs pptwork-capabilities \
+  --output examples/exports/pptwork-capabilities-editable.pptx
+```
+
+Working copies for the export scripts live under `.pptwork/` at the repo root.
+
 ## Disk layout convention
 
 Every deck lives at `.pptwork/<deck-name>/` in the project root:
@@ -136,11 +173,17 @@ Every deck lives at `.pptwork/<deck-name>/` in the project root:
 `deck.json` is the **only** authoritative slide order. Don't hand-edit;
 let `deck.mjs init-slide / move / delete` mutate it.
 
-## Bring your own template assets
+## Built-in template buckets
 
-The skill ships **no built-in template buckets**. If you have a corpus of
-reference slides you'd like to riff on, drop a bucket under
-`ppt/assets/<bucket-name>/`:
+PPTWork ships **two starter buckets** (10 layouts total) under
+`ppt/assets/`:
+
+| Bucket | Theme | Layouts |
+|---|---|---|
+| [`corporate-light/`](ppt/assets/corporate-light/) | Crisp white, navy accent (Inter + Source Sans 3) | cover, agenda, two-column + chart, KPI row, closing CTA |
+| [`claude-warm/`](ppt/assets/claude-warm/) | Warm cream, editorial pairing (Space Grotesk + Lora) | cover, section divider, timeline, quote, bento grid |
+
+Each bucket follows this shape:
 
 ```
 ppt/assets/<bucket>/
@@ -153,9 +196,57 @@ ppt/assets/<bucket>/
 The story-planning phase reads `index.json` to pick layouts; the
 authoring phase reads the matching HTML to borrow composition.
 
-Without a bucket, the skill still works — story planning just describes
-layouts in plain language and authoring composes from scratch using the
-guidance in `ppt-html-authoring/references/`.
+Add your own buckets alongside the starters, or skip buckets entirely —
+story planning can describe layouts in plain language and authoring
+composes from scratch using `ppt-html-authoring/references/`.
+
+Layout inspirations are documented in [`ATTRIBUTIONS.md`](ATTRIBUTIONS.md).
+
+## Example showcase
+
+Preview PNGs live in [`examples/showcase/`](examples/showcase/). Each slide
+below is a real `thumbnail.png` from the sample decks (1280×720).
+
+### Cover — claude-warm template + conclusion-form titles
+
+From [`examples/pptwork-capabilities/p01-cover/`](examples/pptwork-capabilities/p01-cover/)
+
+![PPTWork capabilities cover slide](examples/showcase/showcase-cover.png)
+
+### Bento asymmetric grid — high-density architecture slides
+
+From [`examples/pptwork-capabilities/p03-bento/`](examples/pptwork-capabilities/p03-bento/)
+
+![Two skills bento layout](examples/showcase/showcase-bento.png)
+
+### flow-timeline — cross-page narrative / process arcs
+
+From [`examples/pptwork-capabilities/p05-pipeline/`](examples/pptwork-capabilities/p05-pipeline/)
+
+![End-to-end pipeline timeline](examples/showcase/showcase-pipeline.png)
+
+### kpi-stat-row — large-number metrics with source footnotes
+
+From [`examples/ai-agent-landscape-2026/market-size/`](examples/ai-agent-landscape-2026/market-size/)
+
+![AI agent market KPI row](examples/showcase/showcase-kpi.png)
+
+### two-column-insight — narrative + Chart.js side by side
+
+From [`examples/ai-agent-landscape-2026/landscape/`](examples/ai-agent-landscape-2026/landscape/)
+
+![Competitive landscape two-column slide](examples/showcase/showcase-two-col.png)
+
+### Quick-start workflow — init → screenshot QC → export
+
+From [`examples/pptwork-capabilities/p06-workflow/`](examples/pptwork-capabilities/p06-workflow/)
+
+![Four-step CLI workflow](examples/showcase/showcase-export.png)
+
+### Sample decks
+
+- [`examples/pptwork-capabilities/`](examples/pptwork-capabilities/) — 8-page meta demo of the skill pipeline
+- [`examples/ai-agent-landscape-2026/`](examples/ai-agent-landscape-2026/) — 7-page content pitch alternating both themes
 
 ## License
 
@@ -168,3 +259,8 @@ render via playwright-core, editable conversion via html2pptx-pro /
 dom-to-pptx, raster assembly via pptxgenjs) are adapted from a closed-source
 OpenCode plugin. Released here in skill form so the same workflow runs on
 any agent host.
+
+Built-in layout templates adapt MIT-licensed design patterns from
+[presentation-skill-pack](https://github.com/isatimur/presentation-skill-pack)
+and [ppt-agent-skill](https://github.com/Akxan/ppt-agent-skill) — see
+[`ATTRIBUTIONS.md`](ATTRIBUTIONS.md) for details.

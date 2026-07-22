@@ -119,6 +119,29 @@ async function main() {
   log(`  tmp project root:  ${tmp}`);
   log("");
 
+  // 0. built-in template buckets
+  {
+    const corporateIndex = path.join(SKILL_ROOT, "assets", "corporate-light", "index.json");
+    const claudeIndex = path.join(SKILL_ROOT, "assets", "claude-warm", "index.json");
+    let corporate = null;
+    let claude = null;
+    try {
+      corporate = JSON.parse(await fs.readFile(corporateIndex, "utf-8"));
+      claude = JSON.parse(await fs.readFile(claudeIndex, "utf-8"));
+    } catch {
+      /* handled below */
+    }
+    const ok =
+      Array.isArray(corporate) &&
+      corporate.length === 5 &&
+      Array.isArray(claude) &&
+      claude.length === 5 &&
+      corporate.every((e) => e.id && e.pageType && e.htmlPath) &&
+      claude.every((e) => e.id && e.pageType && e.htmlPath);
+    step("built-in template buckets (corporate-light + claude-warm)", ok,
+      ok ? "5 layouts each" : "missing or malformed index.json under ppt/assets/");
+  }
+
   try {
     // 1. deck init
     {

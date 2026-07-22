@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Lora:wght@400;500&display=swap" />
+  <style>
+    :root {
+      --bg: #faf9f5; --text: #141413; --muted: #73706a;
+      --accent: #d97757; --border: #e8e6dc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body { font-family: Lora, Georgia, serif; background: var(--bg); color: var(--text); }
+    .slide {
+      width: 1280px; height: 720px; padding: 64px 96px;
+      display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+    }
+    [data-role="section-number"] {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 72pt; font-weight: 700; line-height: 0.9;
+      color: color-mix(in srgb, var(--accent) 55%, var(--text));
+      letter-spacing: -0.02em;
+    }
+    [data-role="section-title"] {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 40pt; font-weight: 600; margin-top: 12px; line-height: 1.1;
+    }
+    [data-role="section-lead"] {
+      font-size: 18pt; color: var(--muted); margin-top: 24px; max-width: 42ch; line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div data-role="section-number">PART 02</div>
+    <h2 data-role="section-title">How the pipeline works</h2>
+    <p data-role="section-lead">From intent clarification through story planning, authoring, visual QC, and export.</p>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Section breaks reset attention. Give the audience a breath before diving into mechanics." }
+  </script>
+</body>
+</html>

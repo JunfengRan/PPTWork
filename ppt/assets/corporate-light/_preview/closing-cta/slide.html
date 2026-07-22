@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" />
+  <style>
+    :root {
+      --bg: #ffffff; --bg-2: #f8f9fc; --text: #1a2035; --muted: #6b7280; --accent: #1d4ed8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body {
+      font-family: "Source Sans 3", "PingFang SC", sans-serif;
+      background: linear-gradient(135deg, var(--bg) 60%, var(--bg-2));
+      color: var(--text);
+    }
+    .slide {
+      width: 1280px; height: 720px; padding: 64px 80px;
+      display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+    }
+    [data-role="cta-title"] {
+      font-family: Inter, sans-serif; font-size: 36pt; font-weight: 700;
+      line-height: 1.15; max-width: 16ch; margin-bottom: 28px;
+    }
+    [data-role="cta-body"] {
+      list-style: none; margin-bottom: 36px;
+    }
+    [data-role="cta-body"] li {
+      font-size: 16pt; color: var(--muted); margin-bottom: 10px; padding-left: 20px; position: relative;
+    }
+    [data-role="cta-body"] li::before {
+      content: "→"; position: absolute; left: 0; color: var(--accent);
+    }
+    [data-role="cta-action"] {
+      display: inline-flex; align-items: center;
+      padding: 14px 32px; border-radius: 999px;
+      background: var(--accent); color: #fff;
+      font-family: Inter, sans-serif; font-size: 16pt; font-weight: 600;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h1 data-role="cta-title">Approve phased rollout to all regions by September</h1>
+    <ul data-role="cta-body">
+      <li>Confirm executive sponsor and steering cadence</li>
+      <li>Release Q3 budget for platform hardening</li>
+      <li>Schedule 30-day checkpoint with KPI review</li>
+    </ul>
+    <div data-role="cta-action">Confirm next steps →</div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Close with a clear ask. Pause after the CTA button — let the room respond." }
+  </script>
+</body>
+</html>

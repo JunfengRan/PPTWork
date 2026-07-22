@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Lora:wght@400;500&display=swap" />
+  <style>
+    :root {
+      --bg: #faf9f5; --text: #141413; --muted: #73706a;
+      --accent: #d97757; --accent-2: #6a9bcc; --card-bg: #ffffff; --border: #e8e6dc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body { font-family: Lora, Georgia, serif; background: var(--bg); color: var(--text); }
+    .slide {
+      width: 1280px; height: 720px; padding: 40px 40px 48px;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    [data-role="page-title"] {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 24pt; font-weight: 600; margin-bottom: 20px; flex-shrink: 0;
+      padding-left: 4px;
+    }
+    .content-area {
+      flex: 1 1 0; min-height: 0;
+      display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
+    }
+    [data-role="bento-main"] {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px; overflow: hidden;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .side-stack {
+      display: grid; grid-template-rows: 1fr 1fr; gap: 20px; min-height: 0;
+    }
+    [data-role="bento-side"] {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px; overflow: hidden;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .card-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 16pt; font-weight: 600;
+    }
+    .card-body {
+      font-size: 13pt; color: var(--muted); line-height: 1.65;
+      display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    [data-role="bento-side"] .card-body { -webkit-line-clamp: 3; }
+    .tag {
+      display: inline-block; font-family: "Space Grotesk", sans-serif;
+      font-size: 10pt; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h2 data-role="page-title">Two skills compose into one deck pipeline</h2>
+    <div class="content-area">
+      <div data-role="bento-main">
+        <span class="tag">Deck orchestration</span>
+        <div class="card-title">ppt skill — plan, QC, export</div>
+        <div class="card-body">
+          Clarifies intent, runs story planning against template buckets, initializes deck.json,
+          delegates each page to authoring, runs screenshot visual QC, and exports raster or editable PPTX.
+          Scripts: deck.mjs, screenshot.mjs, export.mjs.
+        </div>
+      </div>
+      <div class="side-stack">
+        <div data-role="bento-side">
+          <span class="tag">Single page</span>
+          <div class="card-title">ppt-html-authoring</div>
+          <div class="card-body">Writes design.md + self-contained slide.html per outline entry.</div>
+        </div>
+        <div data-role="bento-side">
+          <span class="tag">Templates</span>
+          <div class="card-title">assets/ buckets</div>
+          <div class="card-body">index.json picks layouts; HTML references guide composition.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Bento layout: main card is the hero message, side cards are supporting modules. Good for architecture slides." }
+  </script>
+</body>
+</html>

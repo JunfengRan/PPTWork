@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="artifact-type" content="deck" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Lora:wght@400;500&display=swap" />
+  <style>
+    :root {
+      --bg: #faf9f5; --bg-2: #f4f3ee; --text: #141413; --muted: #73706a;
+      --accent: #d97757; --accent-2: #6a9bcc; --border: #e8e6dc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 720px; overflow: hidden; }
+    body {
+      font-family: Lora, Georgia, "PingFang SC", serif;
+      background: var(--bg); color: var(--text);
+    }
+    .slide {
+      width: 1280px; height: 720px; padding: 72px 96px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .slide::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    }
+    [data-role="hero-eyebrow"] {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 12pt; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+    }
+    [data-role="hero-title"] {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 42pt; font-weight: 600; line-height: 1.12; max-width: 16ch;
+    }
+    [data-role="hero-subtitle"] {
+      font-size: 18pt; color: var(--muted); margin-top: 28px; max-width: 38ch; line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div data-role="hero-eyebrow">Design note</div>
+    <h1 data-role="hero-title">HTML is the source — PPTX is the build artifact</h1>
+    <p data-role="hero-subtitle">Author in the browser, verify with screenshots, ship when pixels match intent.</p>
+  </div>
+  <script type="application/json" id="ppt-speaker-notes-json">
+  { "text": "Set the philosophy early: we design in HTML, export is one-way. This frame prevents round-trip confusion." }
+  </script>
+</body>
+</html>
